@@ -17,6 +17,12 @@ set :deploy_to, '/home/glz/rails_exercise'
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
+# rbenv
+set :rbenv_type, :user
+set :rbenv_ruby, '2.3.1'
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w(rake gem bundle ruby rails)
+
 # You can configure the Airbrussh format using :format_options.
 # These are the defaults.
 # set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
