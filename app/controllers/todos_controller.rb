@@ -29,7 +29,10 @@ class TodosController < ApplicationController
     respond_to do |format|
       if @todo.save
         format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
-        format.json { render :show, status: :created, location: @todo }
+        format.json {
+          ActionCable.server.broadcast "todos_channel", Todo.all.as_json
+          render :show, status: :created, location: @todo
+        }
       else
         format.html { render :new }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
@@ -43,10 +46,7 @@ class TodosController < ApplicationController
     respond_to do |format|
       if @todo.update(todo_params)
         format.html { redirect_to @todo, notice: 'Todo was successfully updated.' }
-        format.json {
-          ActionCable.server.broadcast "todos_channel", Todo.all.as_json
-          render :show, status: :created, location: @todo
-        }
+        format.json { render :show, status: :ok, location: @todo }
       else
         format.html { render :edit }
         format.json { render json: @todo.errors, status: :unprocessable_entity }

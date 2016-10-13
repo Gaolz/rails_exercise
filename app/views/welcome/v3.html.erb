@@ -22,7 +22,7 @@
     mounted: function () {
       var that = this;
       App.todos = App.cable.subscriptions.create("TodosChannel", {
-        connected: function () {
+        connected: function() {
           console.log("connected todos");
         },
         disconnected: function() {},
