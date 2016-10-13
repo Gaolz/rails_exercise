@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   get "v1" => "welcome#v1"
   get "v2" => "welcome#v2"
+  get "v3" => "welcome#v3"
   root "people#index"
 end
