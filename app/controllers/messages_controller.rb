@@ -7,7 +7,10 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     if @message.save
-      html = ApplicationController.renderer.render( partial: "messages/message", locals: { message: @message })
+      html = ApplicationController.renderer.render(
+        partial: "messages/message",
+        locals: { message: @message }
+      )
 
       ActionCable.server.broadcast "public_channel", { html: html }
 
