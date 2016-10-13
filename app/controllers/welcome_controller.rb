@@ -10,4 +10,8 @@ class WelcomeController < ApplicationController
   def v3
     @todos = Todo.all
   end
+
+  def v4
+    @todos = Todo.all
+  end
 end
