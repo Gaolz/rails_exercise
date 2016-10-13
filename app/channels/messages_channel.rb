@@ -9,7 +9,8 @@ class MessagesChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    content = data.fetch('message')["content"]
+    message = data.fetch('message')
+    content = message["content"]
 
     @message = Message.new(content: content)
     @message.save
